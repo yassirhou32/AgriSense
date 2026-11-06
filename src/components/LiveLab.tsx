@@ -76,10 +76,10 @@ const tipStyle = {
  * - Freins = fonctions des leviers (pas de random)
  */
 export default function LiveLab() {
-  const [clients, setClients] = useState(180);
-  const [abo, setAbo] = useState(30);
-  const [pack, setPack] = useState(890);
-  const [water, setWater] = useState(18);
+  const [clients, setClients] = useState(220);
+  const [abo, setAbo] = useState(28);
+  const [pack, setPack] = useState(130);
+  const [water, setWater] = useState(72);
 
   const months = useMemo(() => {
     const rows: {
@@ -117,47 +117,18 @@ export default function LiveLab() {
     return rows;
   }, [clients, abo, pack, water]);
 
-  /** Intensité frein 0–100 : plus haut = plus bloquant. 100% piloté par les sliders. */
+  /** Intensité frein 0–100 — piloté par les sliders AirGo */
   const freins = useMemo(() => {
-    const prixRoi = clamp(
-      38 +
-        (pack - 690) / 7.5 + // prix ↑ → frein ↑
-        (pack > 1000 ? 8 : 0) +
-        (water < 12 ? 12 : 0) - // faible preuve eau → ROI moins crédible
-        (water - 18) * 1.15, // eau ↑ → frein prix ↓
-      18,
-      96
-    );
-
-    const complexite = clamp(
-      58 +
-        (abo - 30) * 0.4 + // plus d'Insight = plus de perception “outil”
-        (clients > 350 ? 6 : 0),
-      42,
-      88
-    );
-
-    const data = clamp(
-      42 + clients / 22 + abo * 0.28, // volume + cloud Insight
-      28,
-      94
-    );
-
-    const preuve = clamp(
-      92 -
-        water * 1.85 - // économie d'eau = preuve
-        Math.min(clients, 220) / 18 +
-        (clients > 400 ? 18 : 0) + // cible irréaliste → “pas prouvé”
-        (pack > 1100 ? 6 : 0),
-      16,
-      96
-    );
+    const prixRoi = clamp(25 + (pack - 129) / 2.2 - (water - 60) * 0.35, 18, 96);
+    const complexite = clamp(48 + (abo - 20) * 0.45 + (pack > 230 ? 8 : 0), 35, 90);
+    const data = clamp(40 + abo * 0.4 + clients / 30, 28, 94);
+    const preuve = clamp(100 - water * 0.75 + (clients > 450 ? 12 : 0), 16, 96);
 
     return [
-      { name: "Prix / ROI", impact: Math.round(prixRoi) },
+      { name: "Prix / gadget", impact: Math.round(prixRoi) },
       { name: "Complexité", impact: Math.round(complexite) },
-      { name: "Data", impact: Math.round(data) },
-      { name: "Preuve locale", impact: Math.round(preuve) },
+      { name: "Confiance app", impact: Math.round(data) },
+      { name: "Preuve sécurité", impact: Math.round(preuve) },
     ];
   }, [clients, abo, pack, water]);
 
@@ -187,20 +158,18 @@ export default function LiveLab() {
   const reading = useMemo(() => {
     const worst = [...freins].sort((a, b) => b.impact - a.impact)[0];
     let headline: string;
-    if (pack > 1050) {
-      headline = `À ${pack} €, la marge monte mais le frein prix reste fort (${freins[0].impact}/100).`;
-    } else if (pack < 780) {
-      headline = `À ${pack} €, l'adoption est plus facile. Surveiller la marge.`;
-    } else if (water < 12) {
-      headline = `−${water}% d'eau est trop bas pour être crédible. Frein preuve : ${freins[3].impact}/100.`;
-    } else if (water > 28) {
-      headline = `−${water}% d'eau est ambitieux. Rester dans −12 à −30 %.`;
-    } else if (clients > 420) {
-      headline = `${clients} clients à 24 mois est très haut. Objectif réaliste près de 450 si le canal coop tient.`;
+    if (pack > 165) {
+      headline = `À ${pack} €, au-dessus de la fourchette concurrente (~180 €). Frein prix : ${freins[0].impact}/100.`;
+    } else if (pack <= 130) {
+      headline = `À ${pack} € (ancrage 129,90 € / 4×), adoption livreurs facilitée. Partenaire −50 % ≈ ${Math.round(pack / 2)} €.`;
+    } else if (water < 55) {
+      headline = `Confiance ${water}/100 trop basse. Frein preuve sécurité : ${freins[3].impact}/100.`;
+    } else if (clients > 450) {
+      headline = `${clients} clients à 6 mois est ambitieux sans flottes livraison solides.`;
     } else {
-      headline = `Autour de ${pack} €, le positionnement tient. Frein principal : ${worst.name}.`;
+      headline = `Autour de ${pack} € (concurrents 100–180 €). Frein principal : ${worst.name}.`;
     }
-    const body = `${clients} clients, ${abo}% d'abonnés Insight. CA année 1 : ${(caYear / 1000).toFixed(0)} k€. CA mensuel à M24 : ${(ca24 / 1000).toFixed(1)} k€. Cumul 24 mois : ${(caCumul24 / 1000).toFixed(0)} k€.`;
+    const body = `${clients} clients, ${abo}% flottes B2B. CA Y1 : ${(caYear / 1000).toFixed(0)} k€. CA mensuel fin période : ${(ca24 / 1000).toFixed(1)} k€. Cumul : ${(caCumul24 / 1000).toFixed(0)} k€.`;
     return { headline, body };
   }, [abo, ca24, caCumul24, caYear, clients, freins, pack, water]);
 
@@ -223,7 +192,7 @@ export default function LiveLab() {
           </p>
         </div>
         <Slider
-          label="Clients à 24 mois"
+          label="Clients à 6 mois"
           value={clients}
           min={80}
           max={600}
@@ -232,7 +201,7 @@ export default function LiveLab() {
           onChange={setClients}
         />
         <Slider
-          label="Taux abonnement Insight"
+          label="Part flottes B2B"
           value={abo}
           min={10}
           max={55}
@@ -241,21 +210,21 @@ export default function LiveLab() {
           onChange={setAbo}
         />
         <Slider
-          label="Prix pack Essentiel"
+          label="Prix AirGo"
           value={pack}
-          min={690}
-          max={1290}
-          step={20}
+          min={100}
+          max={180}
+          step={5}
           unit=" €"
           onChange={setPack}
         />
         <Slider
-          label="Économie d'eau médiane"
+          label="Score confiance /100"
           value={water}
-          min={8}
-          max={32}
+          min={40}
+          max={95}
           step={1}
-          unit=" %"
+          unit=""
           onChange={setWater}
         />
         <div className="grid grid-cols-2 gap-3 pt-2">

@@ -129,7 +129,7 @@ export function StandingGate({
         <span className="text-[10px] tracking-[0.2em] text-[var(--gold)]">{number}</span>
         <div className="h-10 w-px bg-gradient-to-b from-[var(--gold)] to-transparent" />
         <span className="rotate-180 text-[9px] tracking-[0.15em] uppercase text-white/40 [writing-mode:vertical-rl]">
-          AgriSense
+          AirGo
         </span>
       </motion.div>
       <motion.div

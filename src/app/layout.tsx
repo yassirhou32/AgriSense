@@ -16,9 +16,9 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "AgriSense — Preuve locale, décision juste",
+  title: "AirGo — Casque urbain intelligent",
   description:
-    "Capteur IoT pour une agriculture de précision durable. Lancement Occitanie, bassin viticole Hérault et Gard.",
+    "Étude de cas marketing innovation : casque connecté mobilité douce. Sécurité, design, mix 4P, plan 6 mois.",
 };
 
 export default function RootLayout({

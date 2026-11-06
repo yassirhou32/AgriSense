@@ -186,6 +186,10 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
   const zoneTone = useCallback(
     (zoneId: string) => {
       const motifs: Record<string, number[]> = {
+        paris: [261.63, 329.63, 392.0],
+        lyon: [220.0, 277.18, 349.23],
+        marseille: [196.0, 246.94, 311.13],
+        bordeaux: [293.66, 369.99, 440.0],
         psl: [261.63, 329.63, 392.0],
         larzac: [174.61, 220.0, 261.63],
         costieres: [293.66, 369.99, 440.0],

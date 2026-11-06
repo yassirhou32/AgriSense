@@ -6,18 +6,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
 
 const LINES = [
-  "Le sol parle.",
-  "Peu l'entendent.",
-  "AgriSense traduit.",
-  "Preuve locale. Décision juste.",
+  "La ville accélère.",
+  "Le risque aussi.",
+  "AirGo protège.",
+  "Sécurité. Design. Confiance.",
 ];
 
 const LEVEL_LABELS = [
-  "Niveau 1 — Prescripteur",
-  "Niveau 2 — Décision 3 feux",
-  "Niveau 3 — Preuve locale",
-  "Niveau 4 — Offre 890 €",
-  "Niveau 5 — Scale Occitanie",
+  "Niveau 1 — Cible",
+  "Niveau 2 — Positionnement",
+  "Niveau 3 — Mix 4P",
+  "Niveau 4 — Campagne",
+  "Niveau 5 — Plan 6 mois",
 ];
 
 function LivingOcean({ open, boost }: { open: boolean; boost: number }) {
@@ -313,6 +313,137 @@ function RisingPyramid({
   );
 }
 
+/** Casque qui entre, se coupe en 4, puis plonge dans l'univers / portail */
+const HELMET_QUARTERS = [
+  { id: "ne", nx: 1, ny: 1 },
+  { id: "nw", nx: -1, ny: 1 },
+  { id: "se", nx: 1, ny: -1 },
+  { id: "sw", nx: -1, ny: -1 },
+] as const;
+
+const _clipN = new THREE.Vector3();
+const _clipO = new THREE.Vector3();
+
+function SplittingHelmet({ open, levels }: { open: boolean; levels: number }) {
+  const root = useRef<THREE.Group>(null);
+  const pieces = useRef<(THREE.Group | null)[]>([]);
+  const crack = useRef(0);
+  const enter = useRef(0);
+  const suck = useRef(0);
+
+  const shellGeo = useMemo(() => {
+    const g = new THREE.SphereGeometry(1, 48, 32, 0, Math.PI * 2, 0, Math.PI * 0.52);
+    g.scale(1.05, 0.72, 1.32);
+    g.translate(0, 0.06, 0.04);
+    g.computeVertexNormals();
+    return g;
+  }, []);
+
+  const clipSets = useMemo(
+    () =>
+      HELMET_QUARTERS.map(
+        (q) =>
+          [
+            new THREE.Plane(new THREE.Vector3(q.nx, 0, 0), 0.008),
+            new THREE.Plane(new THREE.Vector3(0, q.ny, 0), 0.008),
+          ] as [THREE.Plane, THREE.Plane]
+      ),
+    []
+  );
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    const wantEnter = levels >= 1 ? 1 : 0;
+    const wantCrack = levels >= 3 ? 1 : 0;
+    const wantSuck = open ? 1 : 0;
+    enter.current = THREE.MathUtils.lerp(enter.current, wantEnter, 0.07);
+    crack.current = THREE.MathUtils.lerp(crack.current, wantCrack, 0.08);
+    suck.current = THREE.MathUtils.lerp(suck.current, wantSuck, 0.06);
+
+    const e = enter.current;
+    const c = crack.current;
+    const s = suck.current;
+
+    if (root.current) {
+      root.current.visible = e > 0.02;
+      root.current.position.y =
+        THREE.MathUtils.lerp(1.8, 0.55, e) + Math.sin(t * 0.9) * 0.04 * (1 - s);
+      root.current.position.z = THREE.MathUtils.lerp(-4.5, 0.2, e);
+      root.current.rotation.y = t * 0.55 * (1 - s * 0.7);
+      root.current.rotation.x = 0.18 + Math.sin(t * 0.5) * 0.06;
+      const sc = THREE.MathUtils.lerp(0.15, 1.05, e) * (1 - s * 0.35);
+      root.current.scale.setScalar(sc);
+    }
+
+    HELMET_QUARTERS.forEach((q, i) => {
+      const g = pieces.current[i];
+      if (!g) return;
+      const spread = c * (0.55 + s * 1.8);
+      const spin = c * (0.35 + s * 1.2);
+      g.position.x = q.nx * spread;
+      g.position.y = q.ny * spread * 0.75 - s * 1.4;
+      g.position.z = s * (1.2 + i * 0.15);
+      g.rotation.z = q.nx * q.ny * spin;
+      g.rotation.x = q.ny * spin * 0.5;
+      g.rotation.y = q.nx * spin * 0.4;
+      g.scale.setScalar(Math.max(0.05, 1 - s * 0.9));
+      g.updateWorldMatrix(true, false);
+
+      // Coupe locale du quart (suit chaque morceau)
+      const mw = g.matrixWorld;
+      const [px, py] = clipSets[i];
+      _clipO.set(0, 0, 0).applyMatrix4(mw);
+      _clipN.set(q.nx, 0, 0).transformDirection(mw);
+      px.setFromNormalAndCoplanarPoint(_clipN, _clipO);
+      _clipN.set(0, q.ny, 0).transformDirection(mw);
+      py.setFromNormalAndCoplanarPoint(_clipN, _clipO);
+    });
+  });
+
+  return (
+    <group ref={root}>
+      <mesh visible={levels >= 3 && !open}>
+        <boxGeometry args={[0.02, 1.4, 0.02]} />
+        <meshBasicMaterial color="#f0c14b" transparent opacity={0.8} depthWrite={false} />
+      </mesh>
+      <mesh rotation={[0, 0, Math.PI / 2]} visible={levels >= 3 && !open}>
+        <boxGeometry args={[0.02, 1.5, 0.02]} />
+        <meshBasicMaterial color="#f0c14b" transparent opacity={0.8} depthWrite={false} />
+      </mesh>
+
+      {HELMET_QUARTERS.map((q, i) => (
+        <group
+          key={q.id}
+          ref={(el) => {
+            pieces.current[i] = el;
+          }}
+        >
+          <mesh geometry={shellGeo}>
+            <meshStandardMaterial
+              color="#1a1f22"
+              roughness={0.35}
+              metalness={0.55}
+              clippingPlanes={clipSets[i]}
+              clipShadows
+            />
+          </mesh>
+          {q.ny < 0 && (
+            <mesh position={[q.nx * 0.15, 0.05, 0.85]}>
+              <boxGeometry args={[0.18, 0.06, 0.05]} />
+              <meshStandardMaterial
+                color="#f0c14b"
+                emissive="#f0c14b"
+                emissiveIntensity={0.95}
+                clippingPlanes={clipSets[i]}
+              />
+            </mesh>
+          )}
+        </group>
+      ))}
+    </group>
+  );
+}
+
 function Scene({
   open,
   boost,
@@ -326,11 +457,12 @@ function Scene({
     <>
       <color attach="background" args={["#030805"]} />
       <fog attach="fog" args={["#030805", 3.5, 11]} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[3, 5, 2]} intensity={1.15} color="#ffe6b0" />
-      {/* Ordre : océan d'abord (toujours lisible), pyramide contours, anneaux par-dessus */}
+      <ambientLight intensity={0.55} />
+      <directionalLight position={[3, 5, 2]} intensity={1.25} color="#ffe6b0" />
+      <spotLight position={[0, 4, 3]} intensity={0.65} color="#f0c14b" />
       <LivingOcean open={open} boost={boost} />
       <RisingPyramid levels={levels} open={open} />
+      <SplittingHelmet open={open} levels={levels} />
       <Rings open={open} />
       <DriftParticles />
     </>
@@ -438,6 +570,9 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
           dpr={[1, 1.4]}
           camera={{ position: [0, 1.25, 4.4], fov: 42 }}
           gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+          onCreated={({ gl }) => {
+            gl.localClippingEnabled = true;
+          }}
         >
           <Scene open={open} boost={boost} levels={levels} />
         </Canvas>
@@ -499,7 +634,7 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: line >= 0 ? 1 : 0 }}
         >
-          Occitanie · Pyramide · Portail
+          Casque · Coupure ×4 · Univers
         </motion.p>
 
         <div className="mb-7 flex min-h-[9rem] flex-col items-center justify-end gap-2 md:min-h-[10.5rem]">
@@ -531,7 +666,7 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
               className="text-center"
             >
               <h1 className="display text-[clamp(3rem,11vw,7rem)] leading-none text-white">
-                AgriSense
+                AirGo
               </h1>
               <p className="mt-4 text-[13px] tracking-[0.28em] uppercase text-white/55">
                 5 niveaux — le domaine s&apos;ouvre

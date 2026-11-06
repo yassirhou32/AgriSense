@@ -14,34 +14,32 @@ type Feu = {
   color: string;
 };
 
-/** Logique 3 feux réaliste (brief) — humidité + chaleur + nutriments */
-function computeFeu(h: number, t: number, n: number): Feu {
-  const stressChaleur = t >= 32 && h < 50;
-  const stressSec = h < 28 || (h < 35 && t >= 28);
-  const stressNutri = n < 30 && h < 45;
-  const veille =
-    h < 48 || (h < 55 && t >= 27) || n < 38 || (t >= 30 && h < 58);
+/** Logique 3 feux AirGo — luminosité / alerte collision / batterie */
+function computeFeu(lum: number, alert: number, bat: number): Feu {
+  const nuit = lum < 30;
+  const crashRisk = alert >= 70;
+  const batLow = bat < 25;
 
-  if (stressSec || (stressChaleur && h < 40) || (stressNutri && h < 38)) {
+  if (crashRisk || (nuit && batLow)) {
     return {
       level: "rouge",
-      label: "Feu rouge — irriguer maintenant",
-      detail: `Humidité ${h}% critique${t >= 30 ? ` · chaleur ${t}°C` : ""}${n < 35 ? ` · nutriments bas (${n})` : ""}. Reco immédiate.`,
+      label: "Alerte — risque élevé",
+      detail: `Luminosité ${lum}% · score alerte ${alert} · batterie ${bat}%. Activer signaux et vérifier l'app.`,
       color: "#ef4444",
     };
   }
-  if (veille || stressChaleur) {
+  if (nuit || alert >= 45 || bat < 40) {
     return {
       level: "orange",
-      label: "Feu orange — surveiller sous 24 h",
-      detail: `Zone de veille : humidité ${h}%, temp ${t}°C, nutriments ${n}. Pas d'urgence, mais planifier.`,
+      label: "Vigilance — renforcer la visibilité",
+      detail: `Conditions à surveiller. Clignotants et éclairage auto recommandés.`,
       color: "#f0c14b",
     };
   }
   return {
     level: "vert",
-    label: "Feu vert — pas d'irrigation aujourd'hui",
-    detail: `Sol confortable (${h}%). Temp ${t}°C · nutriments ${n}. Maintenir le suivi.`,
+    label: "OK — trajet sous bon signal",
+    detail: `Luminosité ${lum}%, alerte ${alert}, batterie ${bat}%. Maintien du mode urbain standard.`,
     color: "#4ade80",
   };
 }
@@ -177,9 +175,9 @@ function Scene({
 }
 
 export default function CurveField3D() {
-  const [humidite, setHumidite] = useState(42);
-  const [temp, setTemp] = useState(24);
-  const [nutriments, setNutriments] = useState(55);
+  const [humidite, setHumidite] = useState(55); // luminosité
+  const [temp, setTemp] = useState(35); // score alerte
+  const [nutriments, setNutriments] = useState(78); // batterie
   const [focus, setFocus] = useState<SeriesKey | "all">("all");
 
   const feu = computeFeu(humidite, temp, nutriments);
@@ -187,33 +185,33 @@ export default function CurveField3D() {
   const metrics = [
     {
       key: "humidite" as const,
-      label: "Humidité sol",
+      label: "Luminosité",
       val: humidite,
       set: setHumidite,
       unit: "%",
       color: "#4ade80",
-      min: 10,
-      max: 90,
+      min: 5,
+      max: 100,
     },
     {
       key: "temp" as const,
-      label: "Température",
+      label: "Alerte collision",
       val: temp,
       set: setTemp,
-      unit: "°C",
+      unit: "",
       color: "#d4a017",
-      min: 8,
-      max: 42,
+      min: 0,
+      max: 100,
     },
     {
       key: "nutriments" as const,
-      label: "Nutriments",
+      label: "Batterie",
       val: nutriments,
       set: setNutriments,
-      unit: " idx",
+      unit: "%",
       color: "#60a5fa",
-      min: 10,
-      max: 95,
+      min: 5,
+      max: 100,
     },
   ];
 
@@ -225,11 +223,11 @@ export default function CurveField3D() {
       >
         <div>
           <p className="text-[10px] tracking-[0.3em] uppercase text-[var(--gold)]">
-            Signal sol 3D
+            Signal casque
           </p>
-          <h3 className="display mt-2 text-3xl text-white">Données parcelle</h3>
+          <h3 className="display mt-2 text-3xl text-white">Données trajet</h3>
           <p className="mt-2 text-base text-white/60">
-            Ajuste humidité, température et nutriments. La recommandation 3 feux suit.
+            Ajuste luminosité, alerte et batterie. La reco 3 feux suit.
           </p>
         </div>
 

@@ -23,21 +23,17 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] items-end overflow-hidden"
     >
-      {/* Voile doux pour lisibilité sans casser la vidéo */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/75 via-black/25 to-black/40" />
 
-      {/* Halo gold vivant */}
       <motion.div
         className="pointer-events-none absolute -left-24 bottom-0 z-[2] h-[55vh] w-[55vh] rounded-full"
         style={{
-          background:
-            "radial-gradient(circle, rgba(240,193,75,0.18) 0%, transparent 68%)",
+          background: "radial-gradient(circle, rgba(240,193,75,0.18) 0%, transparent 68%)",
         }}
         animate={{ opacity: [0.45, 0.85, 0.45], scale: [1, 1.08, 1] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Contours / vagues — même délire que les passages */}
       <motion.div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[42%]"
         style={{ y: waveY }}
@@ -48,27 +44,14 @@ export default function Hero() {
           transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
         >
           {[0, 1, 2].map((n) => (
-            <svg
-              key={n}
-              className="h-full w-1/3 shrink-0"
-              viewBox="0 0 1440 320"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              <path
-                fill="rgba(42,107,69,0.22)"
-                d="M0,224L80,208C160,192,320,160,480,165C640,171,800,213,960,218C1120,224,1280,192,1360,176L1440,160L1440,320L0,320Z"
-              />
-              <path
-                fill="rgba(240,193,75,0.1)"
-                d="M0,256L100,240C200,224,400,192,600,186C800,181,1000,203,1200,208C1300,211,1380,203,1440,197L1440,320L0,320Z"
-              />
+            <svg key={n} className="h-full w-1/3 shrink-0" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden>
+              <path fill="rgba(42,107,69,0.22)" d="M0,224L80,208C160,192,320,160,480,165C640,171,800,213,960,218C1120,224,1280,192,1360,176L1440,160L1440,320L0,320Z" />
+              <path fill="rgba(240,193,75,0.1)" d="M0,256L100,240C200,224,400,192,600,186C800,181,1000,203,1200,208C1300,211,1380,203,1440,197L1440,320L0,320Z" />
             </svg>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Lignes contour haut — respiration */}
       <motion.svg
         className="pointer-events-none absolute left-0 top-[18%] z-[2] h-24 w-[200%] opacity-70"
         viewBox="0 0 1200 80"
@@ -77,33 +60,18 @@ export default function Hero() {
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
         aria-hidden
       >
-        <path
-          fill="none"
-          stroke="rgba(240,193,75,0.4)"
-          strokeWidth="1.3"
-          d="M0,40 C100,10 200,70 300,38 S500,8 600,42 S800,72 900,35 S1100,12 1200,40"
-        />
-        <path
-          fill="none"
-          stroke="rgba(255,255,255,0.14)"
-          strokeWidth="1"
-          d="M0,55 C120,30 240,75 360,50 S600,20 720,55 S960,75 1080,40 S1160,35 1200,48"
-        />
+        <path fill="none" stroke="rgba(240,193,75,0.4)" strokeWidth="1.3" d="M0,40 C100,10 200,70 300,38 S500,8 600,42 S800,72 900,35 S1100,12 1200,40" />
       </motion.svg>
 
-      <motion.div
-        style={{ opacity, y, scale }}
-        className="relative z-10 w-full px-5 pb-16 pt-28 md:px-10 md:pb-20"
-      >
+      <motion.div style={{ opacity, y, scale }} className="relative z-10 w-full px-5 pb-16 pt-28 md:px-10 md:pb-20">
         <div className="mx-auto max-w-7xl">
-          {/* Marque = signal hero */}
           <motion.p
             className="display text-[clamp(2.4rem,7vw,5.5rem)] leading-none tracking-tight text-white"
             initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, ease }}
           >
-            AgriSense
+            AirGo
           </motion.p>
 
           <motion.div
@@ -119,17 +87,17 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease }}
           >
-            Étude de cas · Conseil innovation
+            Étude de cas · Marketing de l&apos;innovation
           </motion.p>
 
-          <h1 className="display mt-5 max-w-5xl text-[clamp(2.6rem,8.5vw,6.4rem)] leading-[0.92] text-white">
+          <h1 className="display mt-5 max-w-5xl text-[clamp(2.4rem,7.5vw,5.8rem)] leading-[0.92] text-white">
             <motion.span
               className="block"
               initial={{ opacity: 0, y: 48, filter: "blur(12px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.45, ease }}
             >
-              Lancer un capteur IoT
+              Le casque urbain intelligent.
             </motion.span>
             <motion.span
               className="mt-1 block text-[var(--gold)]"
@@ -137,7 +105,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.62, ease }}
             >
-              sans se tromper de marché.
+              Éprouvé par ceux qui roulent le plus.
             </motion.span>
           </h1>
 
@@ -147,8 +115,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.85, ease }}
           >
-            Plan de lancement AgriSense sur une zone réelle — diagnostic, valeur, stratégie,
-            indicateurs. Hypothèses explicites.
+            Équipement de sécurité professionnel pour les livreurs — 129,90 € payable en 4 fois.
+            Puis le grand public, une fois la preuve faite.
           </motion.p>
 
           <motion.div
@@ -161,11 +129,10 @@ export default function Hero() {
               Voir la mission
             </a>
             <a href="#lab" className="btn-ghost">
-              Simulateur 24 mois
+              Lab 6 mois
             </a>
           </motion.div>
 
-          {/* Scroll cue vivant */}
           <motion.div
             className="mt-16 flex items-center gap-4"
             initial={{ opacity: 0 }}
@@ -178,13 +145,7 @@ export default function Hero() {
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
               style={{ originY: 0 }}
             />
-            <motion.p
-              className="text-[10px] tracking-[0.38em] uppercase text-white/45"
-              animate={{ opacity: [0.35, 0.9, 0.35] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              Défiler
-            </motion.p>
+            <p className="text-[10px] tracking-[0.38em] uppercase text-white/45">Défiler</p>
           </motion.div>
         </div>
       </motion.div>
