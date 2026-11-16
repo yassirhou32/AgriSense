@@ -28,7 +28,7 @@ export default function Hero() {
       <motion.div
         className="pointer-events-none absolute -left-24 bottom-0 z-[2] h-[55vh] w-[55vh] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(240,193,75,0.18) 0%, transparent 68%)",
+          background: "radial-gradient(circle, rgba(62,196,255,0.18) 0%, transparent 68%)",
         }}
         animate={{ opacity: [0.45, 0.85, 0.45], scale: [1, 1.08, 1] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -46,7 +46,7 @@ export default function Hero() {
           {[0, 1, 2].map((n) => (
             <svg key={n} className="h-full w-1/3 shrink-0" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden>
               <path fill="rgba(42,107,69,0.22)" d="M0,224L80,208C160,192,320,160,480,165C640,171,800,213,960,218C1120,224,1280,192,1360,176L1440,160L1440,320L0,320Z" />
-              <path fill="rgba(240,193,75,0.1)" d="M0,256L100,240C200,224,400,192,600,186C800,181,1000,203,1200,208C1300,211,1380,203,1440,197L1440,320L0,320Z" />
+              <path fill="rgba(62,196,255,0.1)" d="M0,256L100,240C200,224,400,192,600,186C800,181,1000,203,1200,208C1300,211,1380,203,1440,197L1440,320L0,320Z" />
             </svg>
           ))}
         </motion.div>
@@ -60,7 +60,7 @@ export default function Hero() {
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
         aria-hidden
       >
-        <path fill="none" stroke="rgba(240,193,75,0.4)" strokeWidth="1.3" d="M0,40 C100,10 200,70 300,38 S500,8 600,42 S800,72 900,35 S1100,12 1200,40" />
+        <path fill="none" stroke="rgba(62,196,255,0.4)" strokeWidth="1.3" d="M0,40 C100,10 200,70 300,38 S500,8 600,42 S800,72 900,35 S1100,12 1200,40" />
       </motion.svg>
 
       <motion.div style={{ opacity, y, scale }} className="relative z-10 w-full px-5 pb-16 pt-28 md:px-10 md:pb-20">

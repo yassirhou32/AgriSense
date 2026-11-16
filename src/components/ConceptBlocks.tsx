@@ -41,7 +41,7 @@ export function FreinsRiposte() {
           <motion.div
             className="grid overflow-hidden rounded-2xl border border-white/12 md:grid-cols-12"
             style={{ background: "rgba(8,12,10,0.45)", backdropFilter: "blur(14px)" }}
-            whileHover={{ borderColor: "rgba(240,193,75,0.45)" }}
+            whileHover={{ borderColor: "rgba(62,196,255,0.45)" }}
           >
             <div className="flex items-center border-b border-white/10 px-5 py-5 md:col-span-1 md:border-b-0 md:border-r md:justify-center">
               <span className="display text-2xl text-[var(--gold)]">{r.id}</span>
@@ -165,7 +165,7 @@ export function PrixSpine() {
             </motion.div>
             <div className="hidden md:block" />
             <motion.span
-              className="absolute left-[0.85rem] top-1/2 z-10 h-3.5 w-3.5 -translate-y-1/2 rounded-full bg-[var(--gold)] shadow-[0_0_18px_rgba(240,193,75,0.8)] md:left-1/2 md:-translate-x-1/2"
+              className="absolute left-[0.85rem] top-1/2 z-10 h-3.5 w-3.5 -translate-y-1/2 rounded-full bg-[var(--gold)] shadow-[0_0_18px_rgba(62,196,255,0.8)] md:left-1/2 md:-translate-x-1/2"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -199,7 +199,7 @@ export function CanauxCascade() {
         <Reveal key={t} delay={i * 0.06}>
           <motion.div
             className="rounded-2xl border border-white/12 px-5 py-5"
-            style={{ width: `${100 - i * 8}%`, background: `rgba(240,193,75,${0.14 - i * 0.02})`, backdropFilter: "blur(10px)" }}
+            style={{ width: `${100 - i * 8}%`, background: `rgba(62,196,255,${0.14 - i * 0.02})`, backdropFilter: "blur(10px)" }}
             whileHover={{ x: 8 }}
           >
             <div className="flex gap-4">
@@ -268,7 +268,7 @@ export function DecisionsBoard() {
           <motion.div
             className="relative overflow-hidden rounded-[1.5rem] border border-white/15 p-7 md:p-9"
             style={{ background: "rgba(8,12,10,0.55)", backdropFilter: "blur(16px)" }}
-            whileHover={{ y: -4, borderColor: "rgba(240,193,75,0.5)" }}
+            whileHover={{ y: -4, borderColor: "rgba(62,196,255,0.5)" }}
           >
             <span className="pointer-events-none absolute -right-2 -top-4 display text-[7rem] leading-none text-white/[0.06]">0{i + 1}</span>
             <p className="text-sm text-[var(--gold)]">Décision 0{i + 1}</p>

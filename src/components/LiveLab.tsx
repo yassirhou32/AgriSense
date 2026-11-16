@@ -255,7 +255,7 @@ export default function LiveLab() {
                 <YAxis tick={{ fontSize: 10, fill: "#9ab0a0" }} stroke="#4a5c50" />
                 <Tooltip contentStyle={tipStyle} />
                 <Line type="monotone" dataKey="humidite" name="Humidité %" stroke="#4ade80" strokeWidth={2} dot={false} isAnimationActive animationDuration={500} />
-                <Line type="monotone" dataKey="temp" name="Temp. °C" stroke="#d4a017" strokeWidth={2} dot={false} isAnimationActive animationDuration={500} />
+                <Line type="monotone" dataKey="temp" name="Temp. °C" stroke="#2a9fd9" strokeWidth={2} dot={false} isAnimationActive animationDuration={500} />
                 <Line type="monotone" dataKey="signal" name="Signal" stroke="#7dce9a" strokeWidth={1.5} strokeDasharray="4 4" dot={false} isAnimationActive animationDuration={500} />
               </LineChart>
             </ResponsiveContainer>
@@ -278,8 +278,8 @@ export default function LiveLab() {
                     <stop offset="100%" stopColor="#4ade80" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="gCa" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#d4a017" stopOpacity={0.45} />
-                    <stop offset="100%" stopColor="#d4a017" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#2a9fd9" stopOpacity={0.45} />
+                    <stop offset="100%" stopColor="#2a9fd9" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
@@ -294,7 +294,7 @@ export default function LiveLab() {
                   }}
                 />
                 <Area type="monotone" dataKey="clients" name="Clients" stroke="#4ade80" fill="url(#gClients)" strokeWidth={2} isAnimationActive animationDuration={600} />
-                <Area type="monotone" dataKey="ca" name="CA (€)" stroke="#d4a017" fill="url(#gCa)" strokeWidth={2} isAnimationActive animationDuration={600} />
+                <Area type="monotone" dataKey="ca" name="CA (€)" stroke="#2a9fd9" fill="url(#gCa)" strokeWidth={2} isAnimationActive animationDuration={600} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -315,14 +315,14 @@ export default function LiveLab() {
                   <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: "#9ab0a0" }} />
                   <YAxis type="category" dataKey="name" width={84} tick={{ fontSize: 10, fill: "#9ab0a0" }} />
                   <Tooltip contentStyle={tipStyle} />
-                  <Bar dataKey="impact" name="Intensité" fill="#d4a017" radius={[0, 6, 6, 0]} isAnimationActive animationDuration={450} />
+                  <Bar dataKey="impact" name="Intensité" fill="#2a9fd9" radius={[0, 6, 6, 0]} isAnimationActive animationDuration={450} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
           <div
             className="rounded-[1.5rem] border border-[var(--gold)]/35 p-5 md:p-6"
-            style={{ background: "rgba(240,193,75,0.06)", backdropFilter: "blur(16px)" }}
+            style={{ background: "rgba(62,196,255,0.06)", backdropFilter: "blur(16px)" }}
           >
             <p className="text-sm tracking-[0.2em] uppercase text-[var(--gold)]">
               Lecture

@@ -84,8 +84,8 @@ function MiniHelmet() {
           <boxGeometry args={[0.42, 0.09, 0.07]} />
           <meshStandardMaterial
             ref={led}
-            color="#f0c14b"
-            emissive="#f0c14b"
+            color="#3ec4ff"
+            emissive="#3ec4ff"
             emissiveIntensity={0.9}
             roughness={0.2}
           />
@@ -141,7 +141,7 @@ function MiniHelmet() {
           </mesh>
         ))}
 
-        <Sparkles count={12} scale={[2.2, 1.4, 2.6]} size={1.4} speed={0.35} color="#f0c14b" />
+        <Sparkles count={12} scale={[2.2, 1.4, 2.6]} size={1.4} speed={0.35} color="#3ec4ff" />
       </group>
     </Float>
   );
@@ -194,7 +194,7 @@ export default function TravelingHelmet() {
           className="pointer-events-none absolute left-1/2 top-1/2 h-[110%] w-[110%] -translate-x-1/2 -translate-y-1/2"
           style={{
             background:
-              "radial-gradient(circle, rgba(240,193,75,0.14) 0%, transparent 68%)",
+              "radial-gradient(circle, rgba(62,196,255,0.14) 0%, transparent 68%)",
           }}
           animate={{ opacity: [0.25, 0.5, 0.25], scale: [0.96, 1.04, 0.96] }}
           transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
@@ -209,7 +209,7 @@ export default function TravelingHelmet() {
             <ambientLight intensity={0.65} />
             <directionalLight position={[4, 5, 3]} intensity={1.5} />
             <directionalLight position={[-3, 2, -2]} intensity={0.35} color="#8899aa" />
-            <spotLight position={[0, 3, 4]} intensity={0.7} color="#f0c14b" />
+            <spotLight position={[0, 3, 4]} intensity={0.7} color="#3ec4ff" />
             <MiniHelmet />
           </Canvas>
         </div>

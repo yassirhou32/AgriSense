@@ -33,7 +33,7 @@ function computeFeu(lum: number, alert: number, bat: number): Feu {
       level: "orange",
       label: "Vigilance — renforcer la visibilité",
       detail: `Conditions à surveiller. Clignotants et éclairage auto recommandés.`,
-      color: "#f0c14b",
+      color: "#3ec4ff",
     };
   }
   return {
@@ -148,7 +148,7 @@ function Scene({
         active={focus === "all" || focus === "humidite"}
       />
       <LiveCurve
-        color="#d4a017"
+        color="#2a9fd9"
         amp={tAmp}
         freq={tFreq}
         phase={1.15}
@@ -199,7 +199,7 @@ export default function CurveField3D() {
       val: temp,
       set: setTemp,
       unit: "",
-      color: "#d4a017",
+      color: "#2a9fd9",
       min: 0,
       max: 100,
     },

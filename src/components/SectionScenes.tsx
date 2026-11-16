@@ -11,7 +11,7 @@ function GoldFog() {
       <color attach="background" args={["#030805"]} />
       <fog attach="fog" args={["#030805", 3, 9]} />
       <ambientLight intensity={0.45} />
-      <directionalLight position={[2, 4, 2]} intensity={1} color="#ffe6b0" />
+      <directionalLight position={[2, 4, 2]} intensity={1} color="#b8e6ff" />
     </>
   );
 }
@@ -36,7 +36,7 @@ function TriadOrbit() {
     <group ref={g}>
       <mesh>
         <torusGeometry args={[1.15, 0.012, 8, 96]} />
-        <meshBasicMaterial color="#f0c14b" transparent opacity={0.45} />
+        <meshBasicMaterial color="#3ec4ff" transparent opacity={0.45} />
       </mesh>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.85, 0.01, 8, 96]} />
@@ -46,15 +46,15 @@ function TriadOrbit() {
         <mesh key={i} position={p.toArray()}>
           <sphereGeometry args={[0.09, 16, 16]} />
           <meshStandardMaterial
-            color={i === 0 ? "#f0c14b" : "#4ade80"}
-            emissive={i === 0 ? "#f0c14b" : "#2a6b45"}
+            color={i === 0 ? "#3ec4ff" : "#4ade80"}
+            emissive={i === 0 ? "#3ec4ff" : "#2a6b45"}
             emissiveIntensity={0.6}
           />
         </mesh>
       ))}
       <mesh>
         <sphereGeometry args={[0.18, 20, 20]} />
-        <meshStandardMaterial color="#0a1610" emissive="#f0c14b" emissiveIntensity={0.25} />
+        <meshStandardMaterial color="#0a1610" emissive="#3ec4ff" emissiveIntensity={0.25} />
       </mesh>
     </group>
   );
@@ -75,13 +75,13 @@ function RadarSweep() {
         {[0.5, 0.9, 1.3, 1.7].map((r) => (
           <mesh key={r}>
             <torusGeometry args={[r, 0.01, 6, 80]} />
-            <meshBasicMaterial color="#f0c14b" transparent opacity={0.25} />
+            <meshBasicMaterial color="#3ec4ff" transparent opacity={0.25} />
           </mesh>
         ))}
       </group>
       <mesh ref={sweep} position={[0, 0, 0.02]}>
         <circleGeometry args={[1.7, 48, 0, Math.PI * 0.35]} />
-        <meshBasicMaterial color="#f0c14b" transparent opacity={0.18} side={THREE.DoubleSide} depthWrite={false} />
+        <meshBasicMaterial color="#3ec4ff" transparent opacity={0.18} side={THREE.DoubleSide} depthWrite={false} />
       </mesh>
       {[
         [0.7, 0.4],
@@ -91,7 +91,7 @@ function RadarSweep() {
       ].map(([x, y], i) => (
         <mesh key={i} position={[x, y, 0.04]}>
           <sphereGeometry args={[0.06, 12, 12]} />
-          <meshStandardMaterial color="#f0c14b" emissive="#f0c14b" emissiveIntensity={0.8} />
+          <meshStandardMaterial color="#3ec4ff" emissive="#3ec4ff" emissiveIntensity={0.8} />
         </mesh>
       ))}
     </group>
@@ -131,7 +131,7 @@ function ContourPyramidMini({ spin = 0.25 }: { spin?: number }) {
             <meshBasicMaterial color="#1a4d32" transparent opacity={0.07} depthWrite={false} />
           </mesh>
           <lineSegments geometry={tier.edges}>
-            <lineBasicMaterial color="#f0c14b" transparent opacity={0.55 + i * 0.08} />
+            <lineBasicMaterial color="#3ec4ff" transparent opacity={0.55 + i * 0.08} />
           </lineSegments>
         </group>
       ))}
@@ -145,7 +145,7 @@ function WaveRibbon3D() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uGold: { value: new THREE.Color("#f0c14b") },
+      uGold: { value: new THREE.Color("#3ec4ff") },
       uDeep: { value: new THREE.Color("#06140c") },
     }),
     []
@@ -203,14 +203,14 @@ function SignalCore() {
       {[0.4, 0.7, 1.05].map((r, i) => (
         <mesh key={r} rotation={[Math.PI / 2, 0, i * 0.6]}>
           <torusGeometry args={[r, 0.012, 8, 80]} />
-          <meshBasicMaterial color="#f0c14b" transparent opacity={0.55 - i * 0.12} />
+          <meshBasicMaterial color="#3ec4ff" transparent opacity={0.55 - i * 0.12} />
         </mesh>
       ))}
       <mesh>
         <icosahedronGeometry args={[0.28, 1]} />
         <meshStandardMaterial
           color="#0a1610"
-          emissive="#f0c14b"
+          emissive="#3ec4ff"
           emissiveIntensity={0.55}
           wireframe
         />
@@ -229,7 +229,7 @@ function FreinHelix() {
     <group ref={g}>
       <mesh rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.02, 0.02, 2.2, 8]} />
-        <meshBasicMaterial color="#f0c14b" transparent opacity={0.35} />
+        <meshBasicMaterial color="#3ec4ff" transparent opacity={0.35} />
       </mesh>
       {[0, 1, 2, 3].map((i) => {
         const a = (i / 4) * Math.PI * 2;
@@ -238,8 +238,8 @@ function FreinHelix() {
           <mesh key={i} position={[Math.cos(a) * 0.7, y, Math.sin(a) * 0.7]}>
             <octahedronGeometry args={[0.12, 0]} />
             <meshStandardMaterial
-              color="#f0c14b"
-              emissive="#f0c14b"
+              color="#3ec4ff"
+              emissive="#3ec4ff"
               emissiveIntensity={0.45}
               wireframe={i % 2 === 1}
             />

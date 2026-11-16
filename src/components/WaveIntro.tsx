@@ -27,7 +27,7 @@ function LivingOcean({ open, boost }: { open: boolean; boost: number }) {
       uTime: { value: 0 },
       uOpen: { value: 0 },
       uBoost: { value: 1 },
-      uGold: { value: new THREE.Color("#f0c14b") },
+      uGold: { value: new THREE.Color("#3ec4ff") },
       uDeep: { value: new THREE.Color("#041109") },
       uMid: { value: new THREE.Color("#1f5a3a") },
     }),
@@ -146,7 +146,7 @@ function Rings({ open }: { open: boolean }) {
       {[1.0, 1.45, 1.95, 2.5].map((r) => (
         <mesh key={r}>
           <torusGeometry args={[r, 0.014, 8, 160]} />
-          <meshBasicMaterial color="#f0c14b" transparent opacity={0.45} />
+          <meshBasicMaterial color="#3ec4ff" transparent opacity={0.45} />
         </mesh>
       ))}
     </group>
@@ -182,7 +182,7 @@ function DriftParticles() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.035} color="#f0c14b" transparent opacity={0.55} />
+      <pointsMaterial size={0.035} color="#3ec4ff" transparent opacity={0.55} />
     </points>
   );
 }
@@ -255,7 +255,7 @@ function TierContour({
       <lineSegments geometry={edges}>
         <lineBasicMaterial
           ref={lineMat}
-          color="#f0c14b"
+          color="#3ec4ff"
           transparent
           opacity={0}
           depthWrite={false}
@@ -302,7 +302,7 @@ function RisingPyramid({
       <mesh position={[0, 0.88, 0]} visible={levels >= 5 && !open}>
         <coneGeometry args={[0.1, 0.22, 4]} />
         <meshBasicMaterial
-          color="#f0c14b"
+          color="#3ec4ff"
           wireframe
           transparent
           opacity={0.85}
@@ -404,11 +404,11 @@ function SplittingHelmet({ open, levels }: { open: boolean; levels: number }) {
     <group ref={root}>
       <mesh visible={levels >= 3 && !open}>
         <boxGeometry args={[0.02, 1.4, 0.02]} />
-        <meshBasicMaterial color="#f0c14b" transparent opacity={0.8} depthWrite={false} />
+        <meshBasicMaterial color="#3ec4ff" transparent opacity={0.8} depthWrite={false} />
       </mesh>
       <mesh rotation={[0, 0, Math.PI / 2]} visible={levels >= 3 && !open}>
         <boxGeometry args={[0.02, 1.5, 0.02]} />
-        <meshBasicMaterial color="#f0c14b" transparent opacity={0.8} depthWrite={false} />
+        <meshBasicMaterial color="#3ec4ff" transparent opacity={0.8} depthWrite={false} />
       </mesh>
 
       {HELMET_QUARTERS.map((q, i) => (
@@ -431,8 +431,8 @@ function SplittingHelmet({ open, levels }: { open: boolean; levels: number }) {
             <mesh position={[q.nx * 0.15, 0.05, 0.85]}>
               <boxGeometry args={[0.18, 0.06, 0.05]} />
               <meshStandardMaterial
-                color="#f0c14b"
-                emissive="#f0c14b"
+                color="#3ec4ff"
+                emissive="#3ec4ff"
                 emissiveIntensity={0.95}
                 clippingPlanes={clipSets[i]}
               />
@@ -458,8 +458,8 @@ function Scene({
       <color attach="background" args={["#030805"]} />
       <fog attach="fog" args={["#030805", 3.5, 11]} />
       <ambientLight intensity={0.55} />
-      <directionalLight position={[3, 5, 2]} intensity={1.25} color="#ffe6b0" />
-      <spotLight position={[0, 4, 3]} intensity={0.65} color="#f0c14b" />
+      <directionalLight position={[3, 5, 2]} intensity={1.25} color="#b8e6ff" />
+      <spotLight position={[0, 4, 3]} intensity={0.65} color="#3ec4ff" />
       <LivingOcean open={open} boost={boost} />
       <RisingPyramid levels={levels} open={open} />
       <SplittingHelmet open={open} levels={levels} />
@@ -498,7 +498,7 @@ function TypeLine({ text, active }: { text: string; active: boolean }) {
     >
       {shown}
       {active && shown.length < text.length && (
-        <span className="ml-0.5 inline-block w-[2px] animate-pulse bg-[#f0c14b] align-middle">
+        <span className="ml-0.5 inline-block w-[2px] animate-pulse bg-[#3ec4ff] align-middle">
           &nbsp;
         </span>
       )}
@@ -613,12 +613,12 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
                 style={{
                   width: `${56 - i * 8}px`,
                   opacity: on ? 1 : 0.25,
-                  boxShadow: current ? "0 0 16px rgba(240,193,75,0.35)" : "none",
+                  boxShadow: current ? "0 0 16px rgba(62,196,255,0.35)" : "none",
                 }}
               />
               <span
                 className={`text-[10px] tracking-[0.18em] uppercase ${
-                  current ? "text-[#f0c14b]" : on ? "text-white/70" : "text-white/25"
+                  current ? "text-[#3ec4ff]" : on ? "text-white/70" : "text-white/25"
                 }`}
               >
                 {label}
@@ -630,7 +630,7 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
 
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-end px-6 pb-20 text-center md:pb-24">
         <motion.p
-          className="mb-5 text-[11px] font-semibold tracking-[0.5em] uppercase text-[#f0c14b]"
+          className="mb-5 text-[11px] font-semibold tracking-[0.5em] uppercase text-[#3ec4ff]"
           initial={{ opacity: 0 }}
           animate={{ opacity: line >= 0 ? 1 : 0 }}
         >
@@ -677,7 +677,7 @@ export default function WaveIntro({ onDone }: { onDone: () => void }) {
       </div>
 
       <motion.div
-        className="absolute bottom-0 left-0 z-20 h-[2px] bg-[#f0c14b]"
+        className="absolute bottom-0 left-0 z-20 h-[2px] bg-[#3ec4ff]"
         initial={{ width: "0%" }}
         animate={{ width: "100%" }}
         transition={{ duration: 8.4, ease: "linear" }}

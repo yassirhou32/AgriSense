@@ -39,7 +39,7 @@ export default function GlassCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{
-        borderColor: "rgba(240,193,75,0.45)",
+        borderColor: "rgba(62,196,255,0.45)",
         y: -4,
         transition: { duration: 0.25 },
       }}

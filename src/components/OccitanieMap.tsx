@@ -98,7 +98,7 @@ export default function OccitanieMap() {
           <motion.path
             d="M22,18 C35,10 55,12 70,20 C82,28 88,42 84,54 C78,64 60,68 42,66 C28,64 16,52 14,38 C12,26 16,20 22,18 Z"
             fill="url(#land)"
-            stroke="rgba(240,193,75,0.35)"
+            stroke="rgba(62,196,255,0.35)"
             strokeWidth="0.4"
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
@@ -110,9 +110,9 @@ export default function OccitanieMap() {
           </text>
 
           {ZONES.map((z) => (
-            <line key={`l-${z.id}`} x1="50" y1="40" x2={z.cx} y2={z.cy} stroke={active === z.id ? "rgba(240,193,75,0.55)" : "rgba(255,255,255,0.08)"} strokeWidth="0.25" />
+            <line key={`l-${z.id}`} x1="50" y1="40" x2={z.cx} y2={z.cy} stroke={active === z.id ? "rgba(62,196,255,0.55)" : "rgba(255,255,255,0.08)"} strokeWidth="0.25" />
           ))}
-          <circle cx="50" cy="40" r="1.4" fill="#f0c14b" filter="url(#glow)" />
+          <circle cx="50" cy="40" r="1.4" fill="#3ec4ff" filter="url(#glow)" />
 
           {ZONES.map((z) => {
             const on = active === z.id;
@@ -120,9 +120,9 @@ export default function OccitanieMap() {
               <g key={z.id} className="cursor-pointer" onClick={() => select(z.id)} role="button" tabIndex={0} aria-label={`Écouter ${z.name}`} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") select(z.id); }}>
                 <rect x={z.cx - 4} y={z.cy - 6} width={Math.max(22, z.name.length * 2)} height={10} fill="transparent" />
                 {on && (
-                  <motion.circle key={`ring-${pulse}-${z.id}`} cx={z.cx} cy={z.cy} r={3} fill="none" stroke="#f0c14b" strokeWidth="0.4" initial={{ r: 2, opacity: 0.9 }} animate={{ r: 9, opacity: 0 }} transition={{ duration: 0.85 }} />
+                  <motion.circle key={`ring-${pulse}-${z.id}`} cx={z.cx} cy={z.cy} r={3} fill="none" stroke="#3ec4ff" strokeWidth="0.4" initial={{ r: 2, opacity: 0.9 }} animate={{ r: 9, opacity: 0 }} transition={{ duration: 0.85 }} />
                 )}
-                <motion.circle cx={z.cx} cy={z.cy} r={on ? 3.2 : 2.2} fill={on ? "#f0c14b" : "#3d8f5c"} filter="url(#glow)" animate={{ r: on ? [2.6, 3.5, 2.6] : 2.2 }} transition={{ duration: 1.8, repeat: on ? Infinity : 0 }} />
+                <motion.circle cx={z.cx} cy={z.cy} r={on ? 3.2 : 2.2} fill={on ? "#3ec4ff" : "#3d8f5c"} filter="url(#glow)" animate={{ r: on ? [2.6, 3.5, 2.6] : 2.2 }} transition={{ duration: 1.8, repeat: on ? Infinity : 0 }} />
                 <text x={z.cx + 4} y={z.cy - 2} fill={on ? "#fff" : "rgba(255,255,255,0.55)"} fontSize="2.3" fontWeight={on ? 700 : 400} style={{ pointerEvents: "none" }}>
                   {z.name}
                 </text>

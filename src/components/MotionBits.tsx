@@ -139,7 +139,7 @@ export function Marquee({ items }: { items: string[] }) {
             className="whitespace-nowrap text-[11px] tracking-[0.28em] uppercase text-white/55"
           >
             {t}
-            <span className="mx-5 text-[#d4a017]">◆</span>
+            <span className="mx-5 text-[#2a9fd9]">◆</span>
           </span>
         ))}
       </div>

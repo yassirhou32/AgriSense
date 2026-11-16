@@ -54,7 +54,7 @@ function HelmetModel({
     if (blinkR.current) blinkR.current.emissiveIntensity = selected === "blink" ? 1.3 : b;
   });
 
-  const hi = (id: string) => (selected === id ? "#f0c14b" : undefined);
+  const hi = (id: string) => (selected === id ? "#3ec4ff" : undefined);
 
   return (
     <group ref={group} position={[0, -0.1, 0]} scale={1.05}>
@@ -128,8 +128,8 @@ function HelmetModel({
         <boxGeometry args={[0.48, 0.1, 0.08]} />
         <meshStandardMaterial
           ref={led}
-          color={hi("light") || "#f0c14b"}
-          emissive="#f0c14b"
+          color={hi("light") || "#3ec4ff"}
+          emissive="#3ec4ff"
           emissiveIntensity={0.7}
           roughness={0.2}
         />
@@ -231,12 +231,12 @@ export default function HelmetScene({
         <ambientLight intensity={0.55} />
         <directionalLight position={[4, 5, 2]} intensity={1.35} castShadow />
         <directionalLight position={[-3, 2, -2]} intensity={0.35} color="#8899aa" />
-        <spotLight position={[0, 3, 4]} intensity={0.55} color="#f0c14b" />
+        <spotLight position={[0, 3, 4]} intensity={0.55} color="#3ec4ff" />
         <Float speed={1.2} rotationIntensity={0.12} floatIntensity={0.22}>
           <HelmetModel selected={selected} onSelect={setSelected} />
         </Float>
         <ContactShadows position={[0, -1.15, 0]} opacity={0.4} scale={8} blur={2.5} />
-        <Sparkles count={22} scale={[4.5, 2.8, 4.5]} size={1.4} color="#f0c14b" speed={0.3} />
+        <Sparkles count={22} scale={[4.5, 2.8, 4.5]} size={1.4} color="#3ec4ff" speed={0.3} />
         <OrbitControls enablePan={false} minDistance={2.6} maxDistance={7} />
       </Canvas>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5">

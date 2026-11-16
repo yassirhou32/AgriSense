@@ -67,7 +67,7 @@ export default function SectionBridge({
         style={{
           opacity: glow,
           background:
-            "radial-gradient(circle, rgba(240,193,75,0.28) 0%, rgba(42,107,69,0.12) 42%, transparent 70%)",
+            "radial-gradient(circle, rgba(62,196,255,0.28) 0%, rgba(42,107,69,0.12) 42%, transparent 70%)",
         }}
         animate={{ scale: [1, 1.12, 1], rotate: [0, 8, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -96,7 +96,7 @@ export default function SectionBridge({
                 d="M0,224L60,208C120,192,240,160,360,154C480,149,600,171,720,186C840,203,960,213,1080,197C1200,181,1320,139,1380,117L1440,96L1440,320L0,320Z"
               />
               <path
-                fill="rgba(240,193,75,0.14)"
+                fill="rgba(62,196,255,0.14)"
                 d="M0,256L80,240C160,224,320,192,480,181C640,171,800,181,960,197C1120,213,1280,235,1360,245L1440,256L1440,320L0,320Z"
               />
             </svg>
@@ -123,7 +123,7 @@ export default function SectionBridge({
               aria-hidden
             >
               <path
-                fill="rgba(240,193,75,0.2)"
+                fill="rgba(62,196,255,0.2)"
                 d="M0,160L80,176C160,192,320,224,480,218C640,213,800,171,960,154C1120,139,1280,149,1360,154L1440,160L1440,320L0,320Z"
               />
             </svg>
@@ -145,7 +145,7 @@ export default function SectionBridge({
         >
           <path
             fill="none"
-            stroke="rgba(240,193,75,0.55)"
+            stroke="rgba(62,196,255,0.55)"
             strokeWidth="1.8"
             d="M0,60 C80,20 160,100 240,55 S400,10 480,65 S640,110 720,50 S880,15 960,70 S1120,95 1200,55"
           />
@@ -212,7 +212,7 @@ export default function SectionBridge({
               style={{ scaleX: line }}
             />
             <motion.span
-              className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--gold)] shadow-[0_0_28px_rgba(240,193,75,0.85)]"
+              className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--gold)] shadow-[0_0_28px_rgba(62,196,255,0.85)]"
               style={{ left: dotLeft }}
               animate={{ scale: [1, 1.25, 1] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}

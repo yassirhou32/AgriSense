@@ -204,12 +204,12 @@ export function WaveRibbon() {
       >
         <path
           d="M0,40 C150,80 350,0 600,40 C850,80 1050,0 1200,40 L1200,80 L0,80 Z"
-          fill="rgba(240,193,75,0.08)"
+          fill="rgba(62,196,255,0.08)"
         />
         <path
           d="M0,50 C200,10 400,70 600,50 C800,30 1000,70 1200,50"
           fill="none"
-          stroke="rgba(240,193,75,0.35)"
+          stroke="rgba(62,196,255,0.35)"
           strokeWidth="1.2"
         />
       </svg>

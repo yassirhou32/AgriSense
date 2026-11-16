@@ -80,7 +80,7 @@ export default function MissionBrief() {
           className="absolute right-[-10%] top-1/2 h-[90vmin] w-[90vmin] -translate-y-1/2 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, rgba(240,193,75,0.16) 0%, rgba(42,107,69,0.1) 35%, transparent 68%)",
+              "radial-gradient(circle, rgba(62,196,255,0.16) 0%, rgba(42,107,69,0.1) 35%, transparent 68%)",
           }}
           animate={{ scale: [1, 1.08, 1], opacity: [0.55, 1, 0.55] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -193,28 +193,28 @@ function OrbitPad({
           background:
             "radial-gradient(circle at 50% 45%, rgba(12,18,12,0.92) 0%, rgba(5,8,5,0.88) 55%, rgba(5,8,5,0.55) 100%)",
           boxShadow:
-            "0 0 0 1px rgba(240,193,75,0.35), 0 0 60px rgba(240,193,75,0.18), inset 0 0 80px rgba(0,0,0,0.65)",
+            "0 0 0 1px rgba(62,196,255,0.35), 0 0 60px rgba(62,196,255,0.18), inset 0 0 80px rgba(0,0,0,0.65)",
         }}
       />
       <svg className="pointer-events-none absolute inset-[6%] h-[88%] w-[88%]" viewBox="0 0 100 100" aria-hidden>
         <defs>
           <linearGradient id="ringGold" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f0c14b" stopOpacity="0.95" />
+            <stop offset="0%" stopColor="#3ec4ff" stopOpacity="0.95" />
             <stop offset="100%" stopColor="#3d8f5c" stopOpacity="0.7" />
           </linearGradient>
         </defs>
         {TICKS.map((t) => (
-          <line key={t.i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={t.major ? "rgba(240,193,75,0.7)" : "rgba(255,255,255,0.25)"} strokeWidth={t.major ? 0.45 : 0.22} />
+          <line key={t.i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={t.major ? "rgba(62,196,255,0.7)" : "rgba(255,255,255,0.25)"} strokeWidth={t.major ? 0.45 : 0.22} />
         ))}
         <circle cx="50" cy="50" r="48.5" fill="none" stroke="url(#ringGold)" strokeWidth="1.1" />
-        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(240,193,75,0.45)" strokeWidth="0.55" strokeDasharray="3.5 2.2" />
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(62,196,255,0.45)" strokeWidth="0.55" strokeDasharray="3.5 2.2" />
       </svg>
 
       <motion.div className="pointer-events-none absolute inset-[6%]" style={{ rotate: sweepRot }}>
         <div
           className="absolute left-1/2 top-1/2 h-[48%] w-[48%] origin-bottom-left"
           style={{
-            background: "conic-gradient(from 0deg at 0% 100%, rgba(240,193,75,0.35), transparent 55deg)",
+            background: "conic-gradient(from 0deg at 0% 100%, rgba(62,196,255,0.35), transparent 55deg)",
             transform: "translate(-0%, -100%)",
           }}
         />
@@ -224,12 +224,12 @@ function OrbitPad({
         className="absolute left-1/2 top-1/2 z-20 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full md:h-44 md:w-44"
         style={{
           background: "radial-gradient(circle at 40% 35%, #1a2a1c 0%, #050805 70%)",
-          border: "2px solid rgba(240,193,75,0.85)",
+          border: "2px solid rgba(62,196,255,0.85)",
         }}
         animate={{
           boxShadow: active
-            ? ["0 0 0 6px rgba(240,193,75,0.15), 0 0 50px rgba(240,193,75,0.45)", "0 0 0 10px rgba(240,193,75,0.22), 0 0 80px rgba(240,193,75,0.65)", "0 0 0 6px rgba(240,193,75,0.15), 0 0 50px rgba(240,193,75,0.45)"]
-            : ["0 0 0 4px rgba(240,193,75,0.1), 0 0 35px rgba(240,193,75,0.25)", "0 0 0 7px rgba(240,193,75,0.18), 0 0 55px rgba(240,193,75,0.4)", "0 0 0 4px rgba(240,193,75,0.1), 0 0 35px rgba(240,193,75,0.25)"],
+            ? ["0 0 0 6px rgba(62,196,255,0.15), 0 0 50px rgba(62,196,255,0.45)", "0 0 0 10px rgba(62,196,255,0.22), 0 0 80px rgba(62,196,255,0.65)", "0 0 0 6px rgba(62,196,255,0.15), 0 0 50px rgba(62,196,255,0.45)"]
+            : ["0 0 0 4px rgba(62,196,255,0.1), 0 0 35px rgba(62,196,255,0.25)", "0 0 0 7px rgba(62,196,255,0.18), 0 0 55px rgba(62,196,255,0.4)", "0 0 0 4px rgba(62,196,255,0.1), 0 0 35px rgba(62,196,255,0.25)"],
         }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -239,9 +239,9 @@ function OrbitPad({
 
       <motion.div className="absolute inset-[10%]" style={{ rotate: spring }}>
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
-          <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(240,193,75,0.55)" strokeWidth="0.7" strokeDasharray="1.2 1.8" />
+          <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(62,196,255,0.55)" strokeWidth="0.7" strokeDasharray="1.2 1.8" />
           {BRIEFS.map((b, i) => (
-            <line key={i} x1="50" y1="50" x2={NODE_POS[i].x2} y2={NODE_POS[i].y2} stroke={locked === b.id ? "rgba(240,193,75,0.85)" : "rgba(240,193,75,0.22)"} strokeWidth={locked === b.id ? 0.7 : 0.35} />
+            <line key={i} x1="50" y1="50" x2={NODE_POS[i].x2} y2={NODE_POS[i].y2} stroke={locked === b.id ? "rgba(62,196,255,0.85)" : "rgba(62,196,255,0.22)"} strokeWidth={locked === b.id ? 0.7 : 0.35} />
           ))}
         </svg>
         {BRIEFS.map((b, i) => (
@@ -276,8 +276,8 @@ function OrbitNode({
       <motion.div
         className={`flex min-w-[8.5rem] flex-col items-center gap-1 rounded-full px-4 py-2.5 md:min-w-[9.5rem] ${on ? "bg-[var(--gold)] text-black" : "bg-[#0a100c]/95 text-white"}`}
         style={{
-          border: on ? "2px solid #f0c14b" : "1.5px solid rgba(240,193,75,0.55)",
-          boxShadow: on ? "0 0 28px rgba(240,193,75,0.65)" : "0 0 12px rgba(240,193,75,0.2)",
+          border: on ? "2px solid #3ec4ff" : "1.5px solid rgba(62,196,255,0.55)",
+          boxShadow: on ? "0 0 28px rgba(62,196,255,0.65)" : "0 0 12px rgba(62,196,255,0.2)",
         }}
       >
         <span className={`text-[11px] font-bold tracking-[0.25em] ${on ? "text-black/65" : "text-[var(--gold)]"}`}>{b.id}</span>

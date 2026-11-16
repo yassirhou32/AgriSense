@@ -49,7 +49,7 @@ function ProSensor({ selectedPart, onSelect }: { selectedPart: string; onSelect:
     }
   });
 
-  const highlight = (id: string) => (selectedPart === id ? "#d4a017" : undefined);
+  const highlight = (id: string) => (selectedPart === id ? "#2a9fd9" : undefined);
 
   return (
     <group ref={group} position={[0, -0.15, 0]}>
@@ -72,7 +72,7 @@ function ProSensor({ selectedPart, onSelect }: { selectedPart: string; onSelect:
       {/* Tip */}
       <mesh position={[0, -1.2, 0]} rotation={[Math.PI, 0, 0]} castShadow>
         <coneGeometry args={[0.048, 0.28, 20]} />
-        <meshStandardMaterial color="#c9a66b" metalness={0.85} roughness={0.18} />
+        <meshStandardMaterial color="#3ec4ff" metalness={0.85} roughness={0.18} />
       </mesh>
       {/* Ring marks on probe */}
       {[ -0.2, -0.45, -0.7 ].map((y) => (
@@ -121,7 +121,7 @@ function ProSensor({ selectedPart, onSelect }: { selectedPart: string; onSelect:
       {/* 3 status LEDs */}
       {[
         ["#4ade80", -0.16],
-        ["#d4a017", 0],
+        ["#2a9fd9", 0],
         ["#f87171", 0.16],
       ].map(([c, x]) => (
         <mesh key={c} position={[Number(x), 0.08, 0.25]}>
@@ -153,7 +153,7 @@ function ProSensor({ selectedPart, onSelect }: { selectedPart: string; onSelect:
         </mesh>
         <mesh position={[0, 0.28, 0]}>
           <sphereGeometry args={[0.022, 12, 12]} />
-          <meshStandardMaterial color="#d4a017" metalness={0.6} roughness={0.3} />
+          <meshStandardMaterial color="#2a9fd9" metalness={0.6} roughness={0.3} />
         </mesh>
       </group>
 
@@ -179,8 +179,8 @@ function SignalRing({ radius, delay }: { radius: number; delay: number }) {
     <mesh ref={ref} position={[0.26, 0.85, 0]} rotation={[Math.PI / 2, 0, 0]}>
       <torusGeometry args={[radius, 0.007, 8, 48]} />
       <meshStandardMaterial
-        color="#d4a017"
-        emissive="#d4a017"
+        color="#2a9fd9"
+        emissive="#2a9fd9"
         emissiveIntensity={0.5}
         transparent
         opacity={0.45}
@@ -219,7 +219,7 @@ export default function SensorScene({
       className={`relative ${className} ${interactive ? "cursor-grab active:cursor-grabbing" : ""}`}
     >
       {(interactive || label) && (
-        <div className="pointer-events-none absolute left-4 top-4 z-10 max-w-[220px] border border-[#d4a017]/35 bg-[#0a100d]/90 px-3 py-2 text-[10px] tracking-wide text-[#d4a017]">
+        <div className="pointer-events-none absolute left-4 top-4 z-10 max-w-[220px] border border-[#2a9fd9]/35 bg-[#0a100d]/90 px-3 py-2 text-[10px] tracking-wide text-[#2a9fd9]">
           <p className="uppercase tracking-[0.2em]">{label || "AgriSense 3D"}</p>
           {interactive && (
             <p className="mt-1 text-[11px] normal-case tracking-normal text-white/70">
@@ -250,7 +250,7 @@ export default function SensorScene({
           shadow-mapSize={[1024, 1024]}
         />
         <directionalLight position={[-3, 2, -2]} intensity={0.35} color="#6d9b7a" />
-        <pointLight position={[0.5, 1.4, 1]} intensity={0.55} color="#d4a017" />
+        <pointLight position={[0.5, 1.4, 1]} intensity={0.55} color="#2a9fd9" />
         {showTerrain && <Terrain />}
         <Float
           speed={interactive ? 0.5 : 1.1}
@@ -262,7 +262,7 @@ export default function SensorScene({
             onSelect={(id) => interactive && setPart(id)}
           />
         </Float>
-        <Sparkles count={clearBg ? 12 : 24} scale={4.5} size={1.8} speed={0.3} color="#d4a017" opacity={0.4} />
+        <Sparkles count={clearBg ? 12 : 24} scale={4.5} size={1.8} speed={0.3} color="#2a9fd9" opacity={0.4} />
         {opaque && (
           <ContactShadows position={[0, -1.34, 0]} opacity={0.5} scale={8} blur={2.6} far={4} />
         )}

@@ -40,7 +40,7 @@ export default function TravelingSensor() {
     >
       <div className="relative">
         <motion.div
-          className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(240,193,75,0.28),transparent_70%)]"
+          className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(62,196,255,0.28),transparent_70%)]"
           animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.85, 0.5] }}
           transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -59,13 +59,13 @@ export default function TravelingSensor() {
             height="36"
             rx="8"
             fill="url(#bodyGrad)"
-            stroke="#f0c14b"
+            stroke="#3ec4ff"
             strokeWidth="1.2"
           />
           {/* Écran */}
           <rect x="26" y="26" width="40" height="16" rx="2" fill="#0f2a1a" />
           <circle cx="34" cy="34" r="2.5" fill="#4ade80" />
-          <circle cx="46" cy="34" r="2.5" fill="#f0c14b" />
+          <circle cx="46" cy="34" r="2.5" fill="#3ec4ff" />
           <circle cx="58" cy="34" r="2.5" fill="#f87171" />
           {/* Antenne */}
           <line
@@ -77,19 +77,19 @@ export default function TravelingSensor() {
             strokeWidth="2"
             strokeLinecap="round"
           />
-          <circle cx="72" cy="4" r="3" fill="#f0c14b" />
+          <circle cx="72" cy="4" r="3" fill="#3ec4ff" />
           {/* Sonde */}
           <rect x="41" y="54" width="10" height="78" rx="4" fill="url(#probeGrad)" />
           <rect x="39" y="70" width="14" height="3" rx="1" fill="#3d4a42" />
           <rect x="39" y="90" width="14" height="3" rx="1" fill="#3d4a42" />
           <rect x="39" y="110" width="14" height="3" rx="1" fill="#3d4a42" />
-          <path d="M41 132 L46 146 L51 132 Z" fill="#c9a66b" />
+          <path d="M41 132 L46 146 L51 132 Z" fill="#3ec4ff" />
           {/* Anneaux signal */}
           <circle
             cx="72"
             cy="4"
             r="8"
-            stroke="rgba(240,193,75,0.35)"
+            stroke="rgba(62,196,255,0.35)"
             strokeWidth="1"
             className="origin-center animate-ping"
           />
@@ -100,7 +100,7 @@ export default function TravelingSensor() {
             </linearGradient>
             <linearGradient id="probeGrad" x1="41" y1="54" x2="51" y2="132">
               <stop stopColor="#8a968c" />
-              <stop offset="1" stopColor="#c9a66b" />
+              <stop offset="1" stopColor="#3ec4ff" />
             </linearGradient>
           </defs>
         </svg>
